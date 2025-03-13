@@ -41,20 +41,20 @@ function SimilarCoursesTable() {
                 className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
               >
                 <td className="p-4 border">
-                  <a href={`courses/details/${course.id}`}>{course.name}</a>
+                  <a href={`/courses/${course.id}`}>{course.name}</a>
                 </td>
                 <td className="p-4 border">
-                  <a href={`courses/details/${course.id}`}>
+                  <a href={`/courses/${course.id}`}>
                     {course.details.duration}
                   </a>
                 </td>
                 <td className="p-4 border">
-                  <a href={`courses/details/${course.id}`}>
+                  <a href={`/courses/${course.id}`}>
                     {course.details.location}
                   </a>
                 </td>
                 <td className="p-4 border">
-                  <a href={`courses/details/${course.id}`}>
+                  <a href={`/courses/${course.id}`}>
                     {course.details.fees} GBP
                   </a>
                 </td>
@@ -93,7 +93,7 @@ function AdmissionQueryForm() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm">
+    <div className="bg-white p-6 rounded-lg shadow-sm mt-[60px]">
       <h2 className="text-xl font-bold text-blue-900 mb-4">Admission Query</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
