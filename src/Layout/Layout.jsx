@@ -1,10 +1,10 @@
 
 import { Outlet } from "react-router-dom";
-import TopNavbar from "../Shared/TopNavbar";
 import Footer from "../Shared/Footer";
 import FooterBottom from "../Shared/FooterBottom";
-import SocialLink from "./SocialLink";
 import Navbar from "../Shared/Navbar";
+import TopNavbar from "../Shared/TopNavbar";
+import SocialLink from "./SocialLink";
 
 const Layout = () => {
   return (
