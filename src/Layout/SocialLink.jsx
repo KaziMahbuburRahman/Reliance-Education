@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   FaEnvelope,
   FaFacebookF,
-    FaTwitter,
   FaInstagram,
   FaLinkedinIn,
   FaTwitter,
