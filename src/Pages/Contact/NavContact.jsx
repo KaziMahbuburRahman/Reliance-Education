@@ -1,38 +1,22 @@
-import { IoIosMailOpen } from "react-icons/io";
-import { BiPhoneCall } from "react-icons/bi";
-import { IoLocationSharp } from "react-icons/io5";
+
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Parallax } from "react-parallax";
-import img from "../../assets/banner/bd-tour-image.jpg";
+
 import {
   FaEnvelope,
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaPinterestP,
+  
   FaTwitter,
   FaWhatsapp,
-  FaYoutube,
+  
 } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
 import { MdCallEnd, MdLocationOn, MdMail } from "react-icons/md";
 
 const NavContact = () => {
   const axiosPublic = useAxiosPublic();
-  const [loading, setLoading] = useState(true);
-  const textRef = useRef(null);
-
-
-  useEffect(() => {
-    // Simulate loading completion
-    setTimeout(() => setLoading(false), 2000); // 2 seconds for demo purpose
-
-    if (textRef.current) {
-      setTextWidth(textRef.current.offsetWidth);
-    }
-  }, []);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,10 +55,6 @@ const NavContact = () => {
       console.error("Error config:", err.config);
     }
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div>

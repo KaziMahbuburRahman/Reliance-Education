@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Values from './Values_About_us';
 import KeySkills from './KeySkills';
 import Awards_And_Agent from './Awards_And_Agent';
@@ -51,9 +51,9 @@ const About_US = () => {
             universities and colleges - we are professional and reliable.
           </p>
           <p className="font-semibold text-justify">
-            We follow the British Council's "Guide to Good Practice for
-            Education Agents" in our conducts and the Principles of ''London
-            Statement''. In addition to the professional code of conducts, we
+            We follow the British Council s Guide to Good Practice for
+            Education Agents in our conducts and the Principles of London
+            Statement. In addition to the professional code of conducts, we
             observe ethical, moral and personal values to maintain high
             standards in our work.
           </p>
@@ -163,7 +163,7 @@ const About_US = () => {
                 </div>
                 <div className="md:border-b-2 border-1 md:border-0 md:mt-0 mt-4  md:py-10 py-6">
                   <p className="text-2xl font-bold">14+</p>
-                  <p className="text-2xl font-bold">Years' experience</p>
+                  <p className="text-2xl font-bold">Years experience</p>
                 </div>
                 <div className="border-1 md:mt-0 mt-4 md:border-0  md:py-10 py-6">
                   <p className="text-2xl font-bold">28,000+</p>
