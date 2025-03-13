@@ -1,432 +1,318 @@
-import React, { useEffect, useRef, useState } from "react";
-import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // for menu icons
-import { Link, useLocation } from "react-router-dom";
-import img from "../../src/assets/reliance_logo/Logo.svg";
+import React, { useState } from "react";
+
+// react icons
+import { BsArrowRight } from "react-icons/bs";
+import { CgIfDesign } from "react-icons/cg";
+import { CiMenuFries } from "react-icons/ci";
+import { FaCubesStacked } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
+import { MdDashboardCustomize, MdKeyboardArrowDown } from "react-icons/md";
+import travelLogo from "../assets/reliance_logo/Logo.svg";
+import FlagSelector from "./FlagSelector";
 
 const Navbar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const sidebarRef = useRef(null);
-  const [loading, setLoading] = useState(true);
-  const location = useLocation();
-  const [selected, setSelected] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    // Update the selected state based on the current path
-    const path = location.pathname;
-    setSelected(path);
-  }, [location]);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
-
-  useEffect(() => {
-    const currentPage = localStorage.getItem("selectedPage");
-    if (currentPage) {
-      setSelected(currentPage);
-    }
-  }, []);
-
-  const handleLinkClick = (page) => {
-    setSelected(page);
-    localStorage.setItem("selectedPage", page);
-    setIsSidebarOpen(false); // close sidebar after link click
-  };
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const handleClickOutside = (event) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-      setIsSidebarOpen(false); // close sidebar if clicked outside
-    }
-  };
-
-  useEffect(() => {
-    if (isSidebarOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isSidebarOpen]);
+  const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false);
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
-    <div>
-      <nav className="bg-white z-10 w-full shadow-lg">
-        <div className="w-full  xl:w-[1300px] mx-auto   lg:py-p_8px  flex justify-between items-center  ">
-          {/* Logo Section */}
-          <div className="lg:flex items-center overflow-hidden hidden gap-2">
-            <div className=" lg:h-[90px] w-full  py-5  lg:py-0  lg:my-2  overflow-hidden">
-              <img
-                src={img}
-                alt="Travelley Logo"
-                className="object-contain w-full h-full"
-              />
-            </div>
-          </div>
+    <nav className="flex items-center justify-between w-full relative h-auto p-5 bg-white">
+      {/* logo */}
+      <img src={travelLogo} alt="logo" className="w-[60px] " />
 
-          {/* Desktop Menu Items */}
+      {/* nav links */}
+      <ul className="items-center gap-[20px] text-[1rem] text-[#424242] md:flex hidden">
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] hover:border-t-4 hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
+          home
+        </li>
 
-          <div className="space-x-6 hidden lg:flex  ">
-            <Link
-              to="/"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                selected === "/"
-                  ? "  text-color_navbar_hover border-color_navbar_hover"
-                  : " hover:text-color_navbar_hover group"
-              }`}
-            >
-              Home
-              {selected !== "/" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
-            <div
-              className="relative"
-              onMouseEnter={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}
-            >
-              <Link
-                to="/courses"
-                className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                  isOpen
-                    ? "text-color_navbar_hover border-color_navbar_hover"
-                    : "hover:text-color_navbar_hover group"
-                }`}
-              >
-                Courses
-                {!isOpen && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
+        {/* about us mega menu */}
+        <li className=" transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase flex items-center gap-[3px] group relative">
+          About
+          <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
+          <article className="p-6 bg-white rounded-md boxShadow w-[500px] absolute top-[40px] z-[-1] left-[-100px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
+            <div className="grid grid-cols-2">
+              <ul className="flex flex-col gap-[7px] text-[#424242]">
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                  Message From CEO
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                  Tour Package
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                  Visa Assistance
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                  Umrah Package
+                </li>
+              </ul>
 
-              {/* Dropdown Options */}
-              {isOpen && (
-                <div
-                  className="absolute left-0 mt-1 w-[500px] bg-white shadow-xl rounded-sm  z-50 border-b-4 border-color_navbar_hover"
-                  onMouseEnter={() => setIsOpen(true)} // Mouse dropdown er vitore thakle hide hobe na
-                  onMouseLeave={() => setIsOpen(false)} // Mouse sorale hide hobe
-                >
-                  <ul className="py-2 flex items-start justify-between gap-4 pb-8 ">
-                    <li className="  flex flex-col flex-1">
-                      <p className="font-bold px-4 py-2 text-text_large flex items-center justify-center">
-                        Course Level
-                      </p>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        English course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Distance learning course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Foundation course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Undergraduate course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Postgraduate course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Professional course
-                      </Link>
-                    </li>
-                    <li className=" flex flex-col flex-1 border-l border-black">
-                      <p className="px-4 py-2 text-text_large flex items-center justify-center font-bold">
-                        Popular Subject
-                      </p>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        English course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Distance learning course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Foundation course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Undergraduate course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Postgraduate course
-                      </Link>
-                      <Link
-                        className="px-4 text-sm mb-1 hover:text-black text-color_navbar_hover"
-                        to="/company-overview"
-                      >
-                        Professional course
-                      </Link>
-                    </li>
-                  </ul>
+              <div className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px]">
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <MdDashboardCustomize className="bg-blue-200 text-blue-900 p-1.5 rounded-full text-[2rem]" />
+                  Air Ticket
                 </div>
-              )}
+
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <CgIfDesign className="bg-orange-200 text-orange-800 p-1.5 rounded-full text-[2rem]" />
+                  Modern Design
+                </div>
+
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <FaCubesStacked className="bg-yellow-200 text-yellow-800 p-1.5 rounded-full text-[2rem]" />
+                  Well Stacktured
+                </div>
+              </div>
             </div>
+          </article>
+        </li>
 
-            <Link
-              to="/about"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                selected === "/about"
-                  ? " text-color_navbar_hover border-color_navbar_hover"
-                  : "hover:text-color_navbar_hover group"
-              }`}
-            >
-              About
-              {selected !== "/about" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
-            <Link
-              to="/universities"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                selected === "/universities"
-                  ? " text-color_navbar_hover border-color_navbar_hover"
-                  : "hover:text-color_navbar_hover group"
-              }`}
-            >
-              Universities
-              {selected !== "/universities" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
-            <Link
-              to="/scholarships"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                selected === "/scholarships"
-                  ? " text-color_navbar_hover border-color_navbar_hover"
-                  : "hover:text-color_navbar_hover group"
-              }`}
-            >
-              Scholarships
-              {selected !== "/scholarships" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
-            <Link
-              to="/associates"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                selected === "/associates"
-                  ? " text-color_navbar_hover border-color_navbar_hover"
-                  : "hover:text-color_navbar_hover group"
-              }`}
-            >
-              Associates
-              {selected !== "/associates" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
-            <Link
-              to="/student_service"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
-                selected === "/student_service"
-                  ? " text-color_navbar_hover border-color_navbar_hover"
-                  : "hover:text-color_navbar_hover group"
-              }`}
-            >
-              Student Service
-              {selected !== "/student_service" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
-            <Link
-              to="/contact"
-              className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2  ${
-                selected === "/contact"
-                  ? " text-color_navbar_hover border-color_navbar_hover"
-                  : "hover:text-color_navbar_hover  group"
-              }`}
-            >
-              Contact
-              {selected !== "/contact" && (
-                <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-              )}
-            </Link>
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
+          <a href="/courses">courses</a>
+          <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
+          <article className="p-6 bg-white rounded-md w-[500px] absolute top-[40px] z-[-1] left-[-150px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
+            <div className="grid grid-cols-2">
+              <ul className="flex flex-col gap-[7px] text-[#424242]">
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                  Company Details
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                  Company Location
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                  Team Members
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                  Office Tour
+                </li>
+              </ul>
 
-            {/* Repeat for other links with their respective paths */}
-          </div>
+              <div className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px]">
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <MdDashboardCustomize className="bg-blue-200 text-blue-900 p-1.5 rounded-full text-[2rem]" />
+                  Full Customize
+                </div>
 
-          {/* Mobile Menu Icon */}
-          <div className="lg:hidden flex items-center justify-between z-50 w-full">
-            <div className="overflow-hidden">
-              <img
-                src={img}
-                alt="Travelley   Logo"
-                className="w-[60px]  lg:w-[120px] lg:h-[70px] object-contain py-5 lg:py-0"
-              />
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <CgIfDesign className="bg-orange-200 text-orange-800 p-1.5 rounded-full text-[2rem]" />
+                  Modern Design
+                </div>
+
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <FaCubesStacked className="bg-yellow-200 text-yellow-800 p-1.5 rounded-full text-[2rem]" />
+                  Well Stacktured
+                </div>
+              </div>
             </div>
-            <button className="text-white pr-2" onClick={toggleSidebar}>
-              {isSidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
-          </div>
+          </article>
+        </li>
 
-          {/* Mobile Sidebar */}
-          <div
-            ref={sidebarRef}
-            className={`fixed z-30 top-0 right-0 h-full w-[70%] bg-white shadow-lg transform ${
-              isSidebarOpen ? "translate-x-0" : "translate-x-full"
-            } transition-transform duration-300 lg:hidden`}
+        {/* service mega menu */}
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
+          Universities
+          <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
+          <article className="p-6 bg-white rounded-md w-[500px] absolute top-[40px] z-[-1] left-[-150px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
+            <div className="grid grid-cols-2">
+              <ul className="flex flex-col gap-[7px] text-[#424242]">
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                  Company Details
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                  Company Location
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                  Team Members
+                </li>
+                <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                  <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                  Office Tour
+                </li>
+              </ul>
+
+              <div className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px]">
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <MdDashboardCustomize className="bg-blue-200 text-blue-900 p-1.5 rounded-full text-[2rem]" />
+                  Full Customize
+                </div>
+
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <CgIfDesign className="bg-orange-200 text-orange-800 p-1.5 rounded-full text-[2rem]" />
+                  Modern Design
+                </div>
+
+                <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                  <FaCubesStacked className="bg-yellow-200 text-yellow-800 p-1.5 rounded-full text-[2rem]" />
+                  Well Stacktured
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] hover:border-t-4 hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
+          Scholarships
+        </li>
+
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] hover:border-t-4 hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
+          Associates
+        </li>
+
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] hover:border-t-4 hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
+          Student service
+        </li>
+        <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] hover:border-t-4 hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
+          Contact
+        </li>
+        <li className="lg:flex items-center justify-center gap-[10px] hidden mt-5">
+          <FlagSelector />
+        </li>
+      </ul>
+      {/* Australia Country changer */}
+
+      <CiMenuFries
+        className="text-[1.6rem] text-[#424242]c cursor-pointer md:hidden flex"
+        onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+      />
+      {/* mobile sidebar */}
+      <aside
+        className={` ${
+          mobileSidebarOpen
+            ? "translate-x-0 opacity-100 z-20"
+            : "translate-x-[200px] opacity-0 z-[-1]"
+        } md:hidden bg-white boxShadow p-4 text-center absolute top-[55px] right-0 sm:w-[300px] w-full rounded-md transition-all duration-300`}
+      >
+        <ul className="items-start gap-[20px] text-[1rem] text-gray-600 flex flex-col">
+          <li className="hover:text-[#3B9DF8] group transition-all duration-500 cursor-pointer uppercase flex items-center gap-[10px]">
+            Home
+          </li>
+
+          <li
+            onClick={() => setMobileAboutUsOpen(!mobileAboutUsOpen)}
+            className="hover:text-[#3B9DF8] group transition-all duration-500 cursor-pointer uppercase flex items-center gap-[10px]"
           >
-            <div className="flex flex-col p-4 space-y-4 mt-20">
-              <Link
-                to="/"
-                className={`relative pb-[4px] font-bold ${
-                  selected === "/"
-                    ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                    : "text-black hover:text-clr_primary_text group"
-                }`}
-              >
-                Home
-                {selected !== "/" && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
+            About Us
+            <IoIosArrowDown
+              className={`${
+                mobileAboutUsOpen ? "rotate-[180deg]" : "rotate-0"
+              } text-gray-600 group-hover:text-[#3B9DF8] transition-all duration-300`}
+            />
+          </li>
 
-              <div className="relative">
-                {/* Dropdown Button */}
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="flex items-center font-bold text-black hover:text-clr_primary_text"
-                >
-                  Overview
-                  <FaChevronDown className="ml-2 text-sm transition-transform duration-300" />
-                </button>
+          {/* about us mega menu */}
+          <div
+            className={`${
+              mobileAboutUsOpen ? "block" : "hidden"
+            } group font-[500] ml-6`}
+          >
+            <ul className="flex flex-col gap-[7px] text-[#424242]">
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                Company Details
+              </li>
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                Company Location
+              </li>
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                Team Members
+              </li>
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" /> Office
+                Tour
+              </li>
+            </ul>
 
-                {/* Dropdown Links */}
-                {isOpen && (
-                  <div className=" left-0 mt-2 w-48 bg-white ">
-                    <Link
-                      to="/company-overview"
-                      className={`block mx-4 pb-[4px] mt-2 font-bold ${
-                        selected === "/company-overview"
-                          ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                          : "text-black hover:text-clr_primary_text group"
-                      }`}
-                      onClick={() => setSelected("/company-overview")}
-                    >
-                      Company Overview
-                    </Link>
-                    <Link
-                      to="/message-from-ceo"
-                      className={`block mx-4 pb-[4px] mt-2  font-bold  ${
-                        selected === "/message-from-ceo"
-                          ? "text-clr_primary_text border-b-2 border-clr_primary_text mx-2 "
-                          : "text-black hover:text-clr_primary_text group mx-2"
-                      }`}
-                      onClick={() => setSelected("/message-from-ceo")}
-                    >
-                      Message From CEO
-                    </Link>
-                  </div>
-                )}
+            <div className="flex flex-col gap-[10px] mt-4">
+              <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                <MdDashboardCustomize className="bg-blue-200 text-blue-900 p-1.5 rounded-full text-[2rem]" />
+                Full Customize
               </div>
 
-              <Link
-                to="/tour-package"
-                className={`relative pb-[4px] font-bold ${
-                  selected === "/tour-package"
-                    ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                    : "text-black hover:text-clr_primary_text group"
-                }`}
-              >
-                Tour Package
-                {selected !== "/tour-package" && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
-              <Link
-                to="/visa-assistance"
-                className={`relative pb-[4px] font-bold ${
-                  selected === "/visa-assistance"
-                    ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                    : "text-black hover:text-clr_primary_text group"
-                }`}
-              >
-                Visa Assistance
-                {selected !== "/visa-assistance" && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
-              <Link
-                to="/umrah-package"
-                className={`relative pb-[4px] font-bold ${
-                  selected === "/umrah-package"
-                    ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                    : "text-black hover:text-clr_primary_text group"
-                }`}
-              >
-                Umrah Package
-                {selected !== "/umrah-package" && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
-              <Link
-                to="/air-ticket"
-                className={`relative pb-[4px] font-bold ${
-                  selected === "/air-ticket"
-                    ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                    : "text-black hover:text-clr_primary_text group"
-                }`}
-              >
-                Air Ticket
-                {selected !== "/air-ticket" && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
-              <Link
-                to="/about-us"
-                className={`relative pb-[4px] font-bold ${
-                  selected === "/about-us"
-                    ? "text-clr_primary_text border-b-2 border-clr_primary_text"
-                    : "text-black hover:text-clr_primary_text group"
-                }`}
-              >
-                About Us
-                {selected !== "/about-us" && (
-                  <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-clr_primary_text transition-all duration-300 ease-in-out group-hover:left-0 group-hover:w-full"></span>
-                )}
-              </Link>
+              <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                <CgIfDesign className="bg-orange-200 text-orange-800 p-1.5 rounded-full text-[2rem]" />
+                Modern Design
+              </div>
+
+              <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                <FaCubesStacked className="bg-yellow-200 text-yellow-800 p-1.5 rounded-full text-[2rem]" />
+                Well Stacktured
+              </div>
             </div>
           </div>
+
+          <li
+            onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
+            className="hover:text-[#3B9DF8] group transition-all duration-500 cursor-pointer uppercase flex items-center gap-[10px]"
+          >
+            Service
+            <IoIosArrowDown
+              className={`${
+                mobileServiceOpen ? "rotate-0" : "rotate-[180deg]"
+              } text-gray-600 group-hover:text-[#3B9DF8] transition-all duration-300`}
+            />
+          </li>
+
+          {/* service mega menu */}
+          <div
+            className={`${
+              mobileServiceOpen ? "hidden" : "block"
+            } font-[500] ml-6`}
+          >
+            <ul className="flex flex-col gap-[7px] text-[#424242]">
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" />{" "}
+                Company Details
+              </li>
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                Company Location
+              </li>
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" />
+                Team Members
+              </li>
+              <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                <BsArrowRight className="text-[#424242] text-[0.9rem]" /> Office
+                Tour
+              </li>
+            </ul>
+
+            <div className="flex flex-col gap-[10px] mt-4">
+              <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                <MdDashboardCustomize className="bg-blue-200 text-blue-900 p-1.5 rounded-full text-[2rem]" />
+                Full Customize
+              </div>
+
+              <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                <CgIfDesign className="bg-orange-200 text-orange-800 p-1.5 rounded-full text-[2rem]" />
+                Modern Design
+              </div>
+
+              <div className="flex items-center gap-[10px] text-[1rem] text-[#424242]">
+                <FaCubesStacked className="bg-yellow-200 text-yellow-800 p-1.5 rounded-full text-[2rem]" />
+                Well Stacktured
+              </div>
+            </div>
+          </div>
+        </ul>
+
+        <div className="pt-2">
+          <FlagSelector />
         </div>
-      </nav>
-    </div>
+      </aside>
+    </nav>
   );
 };
 
