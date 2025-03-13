@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
+  FaEnvelope,
   FaFacebookF,
-  FaYoutube,
-  FaTwitter,
+    FaTwitter,
   FaInstagram,
   FaLinkedinIn,
-  FaEnvelope,
+  FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
 
