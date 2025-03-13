@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa"; // for menu icons
-import img from "../../src/assets/reliance_logo/logo.svg";
-import NavSkelator from "./NavSkelator";
+import { Link, useLocation } from "react-router-dom";
+import img from "../../src/assets/reliance_logo/Logo.svg";
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
