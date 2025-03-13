@@ -21,7 +21,7 @@ const Layout = () => {
           <Navbar />
         </div>
 
-        <div className="mt-[280px] lg:mt-[175px]">
+        <div className="mt-[80px] lg:mt-[175px]">
           <Outlet />
         </div>
         <div>
