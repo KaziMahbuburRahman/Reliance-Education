@@ -93,7 +93,7 @@ const Navbar = () => {
               onMouseLeave={() => setIsOpen(false)}
             >
               <Link
-                to=""
+                to="/courses"
                 className={`relative pb-[4px] font-bold text-black hover:border-t-2 border-t-2 border-white hover:border-color_navbar_hover hover:bg-gray-200 px-2 ${
                   isOpen
                     ? "text-color_navbar_hover border-color_navbar_hover"
