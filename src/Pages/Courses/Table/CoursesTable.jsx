@@ -76,7 +76,7 @@ export default function CoursesTable() {
   };
 
   return (
-    <div className="bg-white w-full mx-auto p-4 px-16">
+    <div className="bg-white w-full mx-auto p-4 lg:px-16">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">
           Our <span className="text-red-500">Courses</span>
