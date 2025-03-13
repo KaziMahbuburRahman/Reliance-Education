@@ -18,8 +18,8 @@ const FooterBottom = () => {
               <aside className="grid-flow-col items-center">
                 <p>
                   {" "}
-                  Copyright © {new Date().getFullYear()} Travelley . All Rights
-                  Reserved.
+                  Copyright © {new Date().getFullYear()} Reliance Education .
+                  All Rights Reserved.
                 </p>
               </aside>
               <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="bg-[#F4F4F4] lg:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 items-center justify-between my-6 w-full xl:w-[1300px] mx-auto gap-3 ">
           <div className="bg-white rounded-lg shadow-xl font-bold p-8 w-full">
-            <h1 className="text-text_large mb-3 text-travelley_primary_color">
+            <h1 className="text-text_large mb-3 text-Reliance Education_primary_color">
               Holiday Team
             </h1>
             <div className="">
@@ -24,12 +24,12 @@ const Footer = () => {
                 Call : <span>+01345676567</span>
               </p>
               <p>
-                Mail : <span>tour@travelley.net</span>
+                Mail : <span>tour@Reliance Education.net</span>
               </p>
             </div>
           </div>
           <div className="bg-white rounded-lg shadow-xl font-bold p-8 w-full">
-            <h1 className="text-text_large mb-3 travelley_primary_color">
+            <h1 className="text-text_large mb-3 Reliance Education_primary_color">
               Visa Team
             </h1>
             <div>
@@ -40,7 +40,7 @@ const Footer = () => {
                 Call : <span>+01345676567</span>
               </p>
               <p>
-                Mail : <span>tour@travelley.net</span>
+                Mail : <span>tour@Reliance Education.net</span>
               </p>
             </div>
           </div>
@@ -54,7 +54,7 @@ const Footer = () => {
                 Call : <span>+01345676567</span>
               </p>
               <p>
-                Mail : <span>tour@travelley.net</span>
+                Mail : <span>tour@Reliance Education.net</span>
               </p>
             </div>
           </div>
@@ -68,7 +68,7 @@ const Footer = () => {
                 Call : <span>+01345676567</span>
               </p>
               <p>
-                Mail : <span>tour@travelley.net</span>
+                Mail : <span>tour@Reliance Education.net</span>
               </p>
             </div>
           </div>
@@ -174,16 +174,16 @@ const Footer = () => {
 
             {/* About Us Section */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Travelley</h3>
+              <h3 className="font-semibold text-lg mb-4">Reliance Education</h3>
               <p className="mb-4 text-justify">
-                At Travelley we are passionate about helping people explore the
-                world.Our mission is to make travel accessible and enjoyable for
-                everyone. Our company was founded by two friends who have
-                experience in the travel sector. After years of working in the
-                corporate world, we decided to follow our passion and start our
-                own travel company. We wanted to create a business that would
-                help others experience the same joy and wonder that we felt when
-                we traveled.
+                At Reliance Education we are passionate about helping people
+                explore the world.Our mission is to make travel accessible and
+                enjoyable for everyone. Our company was founded by two friends
+                who have experience in the travel sector. After years of working
+                in the corporate world, we decided to follow our passion and
+                start our own travel company. We wanted to create a business
+                that would help others experience the same joy and wonder that
+                we felt when we traveled.
               </p>
             </div>
           </div>
