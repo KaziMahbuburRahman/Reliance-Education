@@ -41,22 +41,22 @@ function SimilarCoursesTable() {
                 className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
               >
                 <td className="p-4 border">
-                  <a href={`/courses/${course.id}`}>{course.name}</a>
+                  <Link href={`/courses/${course.id}`}>{course.name}</Link>
                 </td>
                 <td className="p-4 border">
-                  <a href={`/courses/${course.id}`}>
+                  <Link href={`/courses/${course.id}`}>
                     {course.details.duration}
-                  </a>
+                  </Link>
                 </td>
                 <td className="p-4 border">
-                  <a href={`/courses/${course.id}`}>
+                  <Link href={`/courses/${course.id}`}>
                     {course.details.location}
-                  </a>
+                  </Link>
                 </td>
                 <td className="p-4 border">
-                  <a href={`/courses/${course.id}`}>
+                  <Link href={`/courses/${course.id}`}>
                     {course.details.fees} GBP
-                  </a>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -293,7 +293,7 @@ export default function CourseDetails() {
 
           {/* Sidebar */}
           <div className="lg:w-96">
-            <AdmissionQueryForm />
+            <LinkdmissionQueryForm />
           </div>
         </div>
       </div>
