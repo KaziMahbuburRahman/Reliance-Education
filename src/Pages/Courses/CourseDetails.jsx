@@ -16,11 +16,8 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import { coursesTableData } from "./Table/CoursesTableData";
 import InfoCard from "./Card/InfoCard";
-
-
-
+import { coursesTableData } from "./Table/CoursesTableData";
 
 // Similar Courses Table Component
 function SimilarCoursesTable() {
@@ -43,10 +40,24 @@ function SimilarCoursesTable() {
                 key={index}
                 className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
               >
-                <td className="p-4 border">{course.name}</td>
-                <td className="p-4 border">{course.details.duration}</td>
-                <td className="p-4 border">{course.details.location}</td>
-                <td className="p-4 border">{course.details.fees} GBP</td>
+                <td className="p-4 border">
+                  <a href={`courses/details/${course.id}`}>{course.name}</a>
+                </td>
+                <td className="p-4 border">
+                  <a href={`courses/details/${course.id}`}>
+                    {course.details.duration}
+                  </a>
+                </td>
+                <td className="p-4 border">
+                  <a href={`courses/details/${course.id}`}>
+                    {course.details.location}
+                  </a>
+                </td>
+                <td className="p-4 border">
+                  <a href={`courses/details/${course.id}`}>
+                    {course.details.fees} GBP
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -177,8 +188,6 @@ export default function CourseDetails() {
       </div>
     );
   }
-
-
 
   return (
     <div className="min-h-screen bg-gray-50">
