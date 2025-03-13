@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Banner = () => {
+const CoursesBanner = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -49,4 +49,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default CoursesBanner;
