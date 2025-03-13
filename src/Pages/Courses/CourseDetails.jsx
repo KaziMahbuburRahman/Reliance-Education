@@ -15,7 +15,7 @@ import {
   FaTrophy,
   FaUsers,
 } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import InfoCard from "./Card/InfoCard";
 import { coursesTableData } from "./Table/CoursesTableData";
 
@@ -36,25 +36,26 @@ function SimilarCoursesTable() {
           </thead>
           <tbody>
             {coursesTableData?.map((course, index) => (
+              
               <tr
                 key={index}
                 className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
               >
                 <td className="p-4 border">
-                  <Link href={`/courses/${course.id}`}>{course.name}</Link>
+                  <Link to={`/courses/${course.id}`}>{course.name}</Link>
                 </td>
                 <td className="p-4 border">
-                  <Link href={`/courses/${course.id}`}>
+                  <Link to={`/courses/${course.id}`}>
                     {course.details.duration}
                   </Link>
                 </td>
                 <td className="p-4 border">
-                  <Link href={`/courses/${course.id}`}>
+                  <Link to={`/courses/${course.id}`}>
                     {course.details.location}
                   </Link>
                 </td>
                 <td className="p-4 border">
-                  <Link href={`/courses/${course.id}`}>
+                  <Link to={`/courses/${course.id}`}>
                     {course.details.fees} GBP
                   </Link>
                 </td>
