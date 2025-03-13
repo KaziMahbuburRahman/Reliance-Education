@@ -293,7 +293,7 @@ export default function CourseDetails() {
 
           {/* Sidebar */}
           <div className="lg:w-96">
-            <LinkdmissionQueryForm />
+            <AdmissionQueryForm />
           </div>
         </div>
       </div>
