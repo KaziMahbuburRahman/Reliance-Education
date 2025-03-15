@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 
 // react icons
-import { BsArrowRight } from "react-icons/bs";
 import { CgIfDesign } from "react-icons/cg";
 import { CiMenuFries } from "react-icons/ci";
 import { FaCubesStacked } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdDashboardCustomize, MdKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
-import travelLogo from "../assets/reliance_logo/Logo.svg";
 import FlagSelector from "./FlagSelector";
+import logo from "/logo/logo.svg";
 
 const Navbar = () => {
   const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false);
@@ -20,7 +19,7 @@ const Navbar = () => {
     <div>
       <nav className="flex items-center justify-between w-full relative h-auto p-5 bg-white">
         {/* logo */}
-        <img src={travelLogo} alt="logo" className="w-[60px] " />
+        <img src={logo} alt="logo" className="w-[60px] " />
 
         {/* nav links */}
         <ul className="items-center gap-[20px] text-[1rem] text-[#424242] md:flex hidden">
@@ -39,11 +38,9 @@ const Navbar = () => {
                     Message From CEO
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    
                     Tour Package
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    
                     Visa Assistance
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
@@ -78,11 +75,9 @@ const Navbar = () => {
                     Message From CEO
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    
                     Tour Package
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    
                     Visa Assistance
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
@@ -118,11 +113,9 @@ const Navbar = () => {
                     Message From CEO
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    
                     Tour Package
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    
                     Visa Assistance
                   </li>
                   <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
@@ -205,11 +198,9 @@ const Navbar = () => {
                   Company Details
                 </li>
                 <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                  
                   Company Location
                 </li>
                 <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                  
                   Team Members
                 </li>
                 <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
@@ -259,11 +250,9 @@ const Navbar = () => {
                   Company Details
                 </li>
                 <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                  
                   Company Location
                 </li>
                 <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                  
                   Team Members
                 </li>
                 <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
