@@ -258,9 +258,9 @@ const Other_Part_Home = () => {
                   <p className="text-[19px] cursor-pointer">
                     How TSC Mode My Visa Pr..
                   </p>
-                  <p class="relative group inline-block">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x cursor-pointer"></i>
-                    <span class="absolute  top-full left-1/2 transform -translate-x-1/2 mt-2 w-auto px-3 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="relative group inline-block">
+                    <i className="zmdi zmdi-more-vert zmdi-hc-2x cursor-pointer"></i>
+                    <span className="absolute  top-full left-1/2 transform -translate-x-1/2 mt-2 w-auto px-3 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                       More
                     </span>
                   </p>
@@ -302,9 +302,9 @@ const Other_Part_Home = () => {
                   <p className="text-[19px] cursor-pointer">
                     How TSC Mode My Visa Pr..
                   </p>
-                  <p class="relative group inline-block">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x cursor-pointer"></i>
-                    <span class="absolute  top-full left-1/2 transform -translate-x-1/2 mt-2 w-auto px-3 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="relative group inline-block">
+                    <i className="zmdi zmdi-more-vert zmdi-hc-2x cursor-pointer"></i>
+                    <span className="absolute  top-full left-1/2 transform -translate-x-1/2 mt-2 w-auto px-3 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                       More
                     </span>
                   </p>
@@ -346,9 +346,9 @@ const Other_Part_Home = () => {
                   <p className="text-[19px] cursor-pointer">
                     How TSC Mode My Visa Pr..
                   </p>
-                  <p class="relative group inline-block">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x cursor-pointer"></i>
-                    <span class="absolute  top-full left-1/2 transform -translate-x-1/2 mt-2 w-auto px-3 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="relative group inline-block">
+                    <i className="zmdi zmdi-more-vert zmdi-hc-2x cursor-pointer"></i>
+                    <span className="absolute  top-full left-1/2 transform -translate-x-1/2 mt-2 w-auto px-3 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                       More
                     </span>
                   </p>
