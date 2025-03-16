@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="flex items-center justify-between w-full relative h-auto p-5 bg-white md:z-50 ">
+      <nav className="flex items-center justify-evenly w-full relative h-auto p-5 bg-white md:z-50 ">
         {/* logo */}
         <img src={logo} alt="logo" className="w-[60px] " />
 
@@ -154,12 +154,11 @@ const Navbar = () => {
           <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] hover:border-t-4 hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
             Contact
           </li>
-          <li className="lg:flex items-center justify-center gap-[10px] hidden mt-5">
-            <FlagSelector />
-          </li>
         </ul>
         {/* Australia Country changer */}
-
+        <li className="lg:flex items-center justify-center hidden mt-5 w-16 ml-9">
+          <FlagSelector />
+        </li>
         <CiMenuFries
           className="text-[1.6rem] text-[#424242]c cursor-pointer md:hidden flex"
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
