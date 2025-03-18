@@ -259,7 +259,7 @@ export default function CourseFilterSidebar({ onFilterChange }) {
       </AnimatePresence>
 
       {/* Desktop sidebar */}
-      <div className="hidden md:block w-full max-w-xs">
+      <div className="hidden md:block w-full max-w-xs mx-4">
         <div className="sticky top-4">
           <div className="flex justify-between items-center p-4">
             <h2 className="text-lg font-bold">Filters</h2>

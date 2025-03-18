@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa"
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function UniversityCollegePage() {
-  const [listingType, setListingType] = useState("")
-  const [country, setCountry] = useState("9") // Default to UK
-  const [city, setCity] = useState("")
+  const [listingType, setListingType] = useState("");
+  const [country, setCountry] = useState("9"); // Default to UK
+  const [city, setCity] = useState("");
 
   // Pagination state
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
 
   // Filtered results state
-  const [filteredInstitutions, setFilteredInstitutions] = useState([])
-  const [totalPages, setTotalPages] = useState(0)
+  const [filteredInstitutions, setFilteredInstitutions] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
 
   // Sample data for universities/colleges with real image URLs
   const allInstitutions = [
@@ -26,7 +26,8 @@ export default function UniversityCollegePage() {
       location: "Bangor, United Kingdom",
       country: "9", // UK
       city: "31", // Bangor
-      image: "https://www.totalstudentcare.com/uploades/institution/original/Bangor-University.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/Bangor-University.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -37,7 +38,8 @@ export default function UniversityCollegePage() {
       location: "Birmingham, United Kingdom",
       country: "9", // UK
       city: "13", // Birmingham
-      image: "https://www.totalstudentcare.com/uploades/institution/original/Birmingham-City-University2.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/Birmingham-City-University2.jpg",
       courses: 553,
       scholarships: "Available",
     },
@@ -48,7 +50,8 @@ export default function UniversityCollegePage() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "https://www.totalstudentcare.com/uploades/institution/original/3.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/3.jpg",
       courses: 43,
       scholarships: "Available",
     },
@@ -59,7 +62,8 @@ export default function UniversityCollegePage() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "https://www.totalstudentcare.com/uploades/institution/original/David-Game-College.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/David-Game-College.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -70,7 +74,8 @@ export default function UniversityCollegePage() {
       location: "Leicester, United Kingdom",
       country: "9", // UK
       city: "72", // Leicester
-      image: "https://www.totalstudentcare.com/uploades/institution/original/download.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/download.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -93,7 +98,8 @@ export default function UniversityCollegePage() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "https://www.totalstudentcare.com/uploades/institution/original/nun.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/nun.jpg",
       courses: 38,
       scholarships: "Available",
     },
@@ -104,7 +110,8 @@ export default function UniversityCollegePage() {
       location: "Belfast, United Kingdom",
       country: "9", // UK
       city: "69", // Belfast
-      image: "https://www.totalstudentcare.com/uploades/institution/original/Queen_University_Belfast.jpg",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/Queen_University_Belfast.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -115,7 +122,8 @@ export default function UniversityCollegePage() {
       location: "Southampton, United Kingdom",
       country: "9", // UK
       city: "80", // Southampton
-      image: "https://www.totalstudentcare.com/uploades/institution/original/Solent-Logo.png",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/Solent-Logo.png",
       courses: 0,
       scholarships: "Available",
     },
@@ -126,7 +134,8 @@ export default function UniversityCollegePage() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "https://www.totalstudentcare.com/uploades/institution/original/Ulster-University%20logo.png",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/Ulster-University%20logo.png",
       courses: 25,
       scholarships: "Available",
     },
@@ -163,7 +172,7 @@ export default function UniversityCollegePage() {
       courses: 200,
       scholarships: "Available",
     },
-  ]
+  ];
 
   // Countries data
   const countries = [
@@ -176,7 +185,7 @@ export default function UniversityCollegePage() {
     { id: "27", name: "Ireland" },
     { id: "28", name: "Italy" },
     // More countries...
-  ]
+  ];
 
   // Cities data (UK cities)
   const cities = [
@@ -196,63 +205,69 @@ export default function UniversityCollegePage() {
     { id: "72", name: "Leicester" },
     { id: "80", name: "Southampton" },
     // More cities...
-  ]
+  ];
 
   // Filter institutions based on selected criteria
   const filterInstitutions = () => {
-    let results = [...allInstitutions]
+    let results = [...allInstitutions];
 
     // Filter by listing type if selected
     if (listingType) {
-      results = results.filter((institution) => institution.type === listingType)
+      results = results.filter(
+        (institution) => institution.type === listingType
+      );
     }
 
     // Filter by country if selected
     if (country) {
-      results = results.filter((institution) => institution.country === country)
+      results = results.filter(
+        (institution) => institution.country === country
+      );
     }
 
     // Filter by city if selected
     if (city) {
-      results = results.filter((institution) => institution.city === city)
+      results = results.filter((institution) => institution.city === city);
     }
 
-    setFilteredInstitutions(results)
-    setTotalPages(Math.ceil(results.length / itemsPerPage))
-    setCurrentPage(1) // Reset to first page after filtering
-  }
+    setFilteredInstitutions(results);
+    setTotalPages(Math.ceil(results.length / itemsPerPage));
+    setCurrentPage(1); // Reset to first page after filtering
+  };
 
   // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault()
-    filterInstitutions()
-  }
+    e.preventDefault();
+    filterInstitutions();
+  };
 
   // Get current institutions for pagination
   const getCurrentInstitutions = () => {
-    const indexOfLastItem = currentPage * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    return filteredInstitutions.slice(indexOfFirstItem, indexOfLastItem)
-  }
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    return filteredInstitutions.slice(indexOfFirstItem, indexOfLastItem);
+  };
 
   // Change page
   const paginate = (pageNumber) => {
     if (pageNumber > 0 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber)
+      setCurrentPage(pageNumber);
     }
-  }
+  };
 
   // Initialize with all institutions
   useEffect(() => {
-    setFilteredInstitutions(allInstitutions)
-    setTotalPages(Math.ceil(allInstitutions.length / itemsPerPage))
-  }, [])
+    setFilteredInstitutions(allInstitutions);
+    setTotalPages(Math.ceil(allInstitutions.length / itemsPerPage));
+  }, []);
 
   return (
     <div className="university-college-page bg-gray-50 min-h-screen pb-12">
       <div className="bg-white shadow-md">
         <div className="container mx-auto py-8">
-          <h1 className="text-3xl font-bold text-center mb-8">Universities & Colleges</h1>
+          <h1 className="text-3xl font-bold text-center mb-8">
+            Universities & Colleges
+          </h1>
 
           {/* Filter Form */}
           <form onSubmit={handleSubmit} className="w-full px-4">
@@ -315,8 +330,12 @@ export default function UniversityCollegePage() {
       <div className="container mx-auto mt-8 px-4">
         {filteredInstitutions.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
-            <h3 className="text-xl font-medium text-gray-700">No institutions found matching your criteria</h3>
-            <p className="mt-2 text-gray-500">Try adjusting your filters or browse all institutions</p>
+            <h3 className="text-xl font-medium text-gray-700">
+              No institutions found matching your criteria
+            </h3>
+            <p className="mt-2 text-gray-500">
+              Try adjusting your filters or browse all institutions
+            </p>
           </div>
         ) : (
           <AnimatePresence>
@@ -329,48 +348,69 @@ export default function UniversityCollegePage() {
                 transition={{ duration: 0.3 }}
                 className="bg-white rounded-lg shadow-md mb-6 overflow-hidden"
               >
-                <div className="p-6">
+                <div className="p-6 bg-[repeating-linear-gradient(33deg,_#3e5d8c47,_transparent_1px)]">
                   <div className="flex flex-col md:flex-row gap-6">
                     <div className="md:w-1/3 lg:w-1/4">
                       <div className="bg-gray-100 rounded-lg overflow-hidden">
                         <img
                           src={institution.image || "/placeholder.svg"}
                           alt={institution.name}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-48  border-2 border-[#538de64d] border-dashed"
                         />
                       </div>
                     </div>
 
                     <div className="md:w-2/3 lg:w-3/4">
                       <h2 className="text-xl font-bold mb-4">
-                        <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors">
+                        <a
+                          href="#"
+                          className="text-blue-600 hover:text-blue-800 transition-colors"
+                        >
                           {institution.name}
                         </a>
                       </h2>
 
-                      <div className="overflow-x-auto">
+                      <div className="overflow-x-auto bg-[#F9FAFB]">
                         <table className="min-w-full border border-gray-200 rounded-lg">
                           <tbody>
                             <tr className="border-b">
-                              <td className="py-2 px-4 bg-gray-50 font-medium">Main Campus Location</td>
-                              <td className="py-2 px-4">{institution.location}</td>
+                              <td className="py-2 px-4 bg-gray-50 font-medium">
+                                Main Campus Location
+                              </td>
+                              <td className="py-2 px-4">
+                                {institution.location}
+                              </td>
                             </tr>
                             <tr className="border-b">
-                              <td className="py-2 px-4 bg-gray-50 font-medium">About {institution.name}</td>
+                              <td className="py-2 px-4 bg-gray-50 font-medium">
+                                About {institution.name}
+                              </td>
                               <td className="py-2 px-4">
-                                <a href="#" className="text-blue-600 hover:text-blue-800">
+                                <a
+                                  href="#"
+                                  className="text-blue-600 hover:text-blue-800"
+                                >
                                   View Profile
                                 </a>
                               </td>
                             </tr>
                             <tr className="border-b">
-                              <td className="py-2 px-4 bg-gray-50 font-medium">Scholarships</td>
-                              <td className="py-2 px-4">{institution.scholarships}</td>
+                              <td className="py-2 px-4 bg-gray-50 font-medium">
+                                Scholarships
+                              </td>
+                              <td className="py-2 px-4">
+                                {institution.scholarships}
+                              </td>
                             </tr>
                             <tr>
-                              <td className="py-2 px-4 bg-gray-50 font-medium">Find Courses</td>
+                              <td className="py-2 px-4 bg-gray-50 font-medium">
+                                Find Courses
+                              </td>
                               <td className="py-2 px-4">
-                                <a href="#" className="text-blue-600 hover:text-blue-800">
+                                <a
+                                  href="#"
+                                  className="text-blue-600 hover:text-blue-800"
+                                >
                                   View all ({institution.courses})
                                 </a>
                               </td>
@@ -433,12 +473,14 @@ export default function UniversityCollegePage() {
 
         {/* Results summary */}
         <div className="mt-4 text-center text-gray-600">
-          Showing {filteredInstitutions.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} to{" "}
-          {Math.min(currentPage * itemsPerPage, filteredInstitutions.length)} of {filteredInstitutions.length}{" "}
-          institutions
+          Showing{" "}
+          {filteredInstitutions.length > 0
+            ? (currentPage - 1) * itemsPerPage + 1
+            : 0}{" "}
+          to {Math.min(currentPage * itemsPerPage, filteredInstitutions.length)}{" "}
+          of {filteredInstitutions.length} institutions
         </div>
       </div>
     </div>
-  )
+  );
 }
-

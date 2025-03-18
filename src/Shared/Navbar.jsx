@@ -68,81 +68,84 @@ const Navbar = () => {
             </article>
           </li>
 
-          <li className="border-t-4 border-transparent transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
-            <Link to="/courses">courses</Link>
-            <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
-            <article className="font-normal p-6 bg-white rounded-md boxShadow w-[500px] absolute top-[40px] z-[-1] left-[-100px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
-              <div className="grid grid-cols-2">
-                <ul className="flex flex-col gap-[7px] text-[#424242]">
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Message From CEO
-                  </li>
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Tour Package
-                  </li>
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Visa Assistance
-                  </li>
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Umrah Package
-                  </li>
-                </ul>
+          <Link to="/courses">
+            <li className="border-t-4 border-transparent transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
+              courses
+              <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
+              <article className="font-normal p-6 bg-white rounded-md boxShadow w-[500px] absolute top-[40px] z-[-1] left-[-100px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
+                <div className="grid grid-cols-2">
+                  <ul className="flex flex-col gap-[7px] text-[#424242]">
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Message From CEO
+                    </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Tour Package
+                    </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Visa Assistance
+                    </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Umrah Package
+                    </li>
+                  </ul>
 
-                <ul className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px] text-black">
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Air Ticket
-                  </li>
+                  <ul className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px] text-black">
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Air Ticket
+                    </li>
 
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Professional recognition
-                  </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Professional recognition
+                    </li>
 
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Company profile
-                  </li>
-                </ul>
-              </div>
-            </article>
-          </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Company profile
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </li>
+          </Link>
 
           {/* service mega menu */}
-          <li className="border-t-4 border-transparent transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
-            <Link to="/universities">Universities</Link>
-            <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
-            <article className="font-normal p-6 bg-white rounded-md boxShadow w-[500px] absolute top-[40px] z-[-1] left-[-100px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
-              <div className="grid grid-cols-2">
-                <ul className="flex flex-col gap-[7px] text-[#424242]">
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Message From CEO
-                  </li>
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Tour Package
-                  </li>
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Visa Assistance
-                  </li>
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Umrah Package
-                  </li>
-                </ul>
+          <Link to="/universities">
+            <li className="border-t-4 border-transparent transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
+              Universities
+              <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
+              <article className="font-normal p-6 bg-white rounded-md boxShadow w-[500px] absolute top-[40px] z-[-1] left-[-100px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
+                <div className="grid grid-cols-2">
+                  <ul className="flex flex-col gap-[7px] text-[#424242]">
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Message From CEO
+                    </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Tour Package
+                    </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Visa Assistance
+                    </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Umrah Package
+                    </li>
+                  </ul>
 
-                <ul className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px] text-black">
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Air Ticket
-                  </li>
+                  <ul className="flex flex-col gap-[10px] border-l border-[#e5eaf2] pl-[30px] text-black">
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Air Ticket
+                    </li>
 
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Professional recognition
-                  </li>
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Professional recognition
+                    </li>
 
-                  <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
-                    Company profile
-                  </li>
-                </ul>
-              </div>
-            </article>
-          </li>
-
+                    <li className="flex items-center gap-[7px] hover:text-[#3B9DF8] transition-all duration-300">
+                      Company profile
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </li>
+          </Link>
           <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] border-t-4 border-transparent hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
             Scholarships
           </li>
