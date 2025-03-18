@@ -5,3 +5,6 @@
     border-color: #e9f1fa;
   }
 }
+@theme {
+  --breakpoint-xs: 36.3rem;
+}
