@@ -14,7 +14,8 @@ const Navbar = () => {
   const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-
+  const currentUrl = window.location.pathname.split("/").pop();
+    // console.log(currentUrl);
   return (
     <div>
       <nav className="flex items-center justify-between lg:justify-evenly w-full relative h-auto p-5 bg-white md:z-50 ">
@@ -199,7 +200,7 @@ const Navbar = () => {
                       height="48"
                       className="max-w-full"
                     />
-                    {/* <span className="absolute bottom-0 right-0 inline-flex items-center justify-center gap-1 rounded-full border-2 border-white bg-emerald-500 p-1 text-sm text-white">
+                    {/* <span className="absolute bottom-0 right-0 inline-flex items-center justify-center gap-1 rounded-full border-2 border-white bg-sky-500 p-1 text-sm text-white">
                   <span className="sr-only"> online </span>
                 </span> */}
                   </a>
@@ -219,28 +220,33 @@ const Navbar = () => {
               >
                 <div>
                   <ul className="flex flex-1 flex-col gap-1 py-3">
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <Link
                         to="/"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center">
                           <FiHome className="h-7 w-7" />
                         </div>
-                        <div
-                          onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          }
-                          className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm"
-                        >
+                        <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                           Home
                         </div>
                       </Link>
                     </li>
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <Link
                         to="/courses"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "courses" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center ">
                           <MdOutlineInfo className="h-7 w-7" />
@@ -258,10 +264,13 @@ const Navbar = () => {
                         </span>
                       </Link>
                     </li>
-                    {/* <li className="px-3">
+                    {/* onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } <li className="px-3">
+                    
                                 <a
                                     href="#"
-                                    className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                                    className="flex items-`center gap-3 rounded p-3 text-s{ate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[curren`}t=page]:text-emerald-500 
                                 >
                                     <div className="flex items-center self-center ">
                                         <svg
@@ -286,10 +295,15 @@ const Navbar = () => {
                                     </div>
                                 </a>
                             </li> */}
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <Link
                         href="/admin/blogList"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "coursess" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center ">
                           <MdOutlineInfo className="h-7 w-7" />
@@ -307,10 +321,15 @@ const Navbar = () => {
                         </span>
                       </Link>
                     </li>
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <a
                         href="#"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "coursess" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center ">
                           <MdOutlineInfo className="h-7 w-7" />
@@ -329,10 +348,15 @@ const Navbar = () => {
                 </div>
                 <div>
                   <ul className="flex flex-1 flex-col gap-1 py-3">
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <a
                         href="#"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "coursess" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center">
                           <MdOutlineInfo className="h-7 w-7" />
@@ -347,10 +371,15 @@ const Navbar = () => {
                         </div>
                       </a>
                     </li>
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <a
                         href="#"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "coursses" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center ">
                           <MdOutlineInfo className="h-7 w-7" />
@@ -365,10 +394,15 @@ const Navbar = () => {
                         </div>
                       </a>
                     </li>
-                    <li className="px-3">
+                    <li onClick={() =>
+                            setMobileSidebarOpen(!mobileSidebarOpen)
+                          } className="px-3">
+                        
                       <a
                         href="#"
-                        className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500 "
+                        className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
+                          currentUrl === "coursess" && "bg-sky-50"
+                        }`}
                       >
                         <div className="flex items-center self-center ">
                           <MdOutlineInfo className="h-7 w-7" />
@@ -404,7 +438,7 @@ const Navbar = () => {
               <footer className="border-t border-slate-200 p-3">
                 <a
                   onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-                  className="flex items-center gap-3 rounded p-3 text-slate-900 transition-colorsx hover:text-emerald-500 "
+                  className="flex items-center gap-3 rounded p-3 text-slate-900 transition-colorsx hover:text-sky-500 "
                 >
                   <div className=" flex items-center self-center ">
                     <IoIosCloseCircleOutline className="h-7 w-7" />
