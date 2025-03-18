@@ -15,7 +15,7 @@ const Navbar = () => {
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const currentUrl = window.location.pathname.split("/").pop();
-    // console.log(currentUrl);
+  // console.log(currentUrl);
   return (
     <div>
       <nav className="flex items-center justify-between lg:justify-evenly w-full relative h-auto p-5 bg-white md:z-50 ">
@@ -107,7 +107,7 @@ const Navbar = () => {
 
           {/* service mega menu */}
           <li className="border-t-4 border-transparent transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] uppercase group relative flex items-center gap-[3px]">
-            Universities
+            <Link to="/universities">Universities</Link>
             <MdKeyboardArrowDown className="text-[1.5rem] text-[#424242] group-hover:text-[#3B9DF8] transition-all duration-500 group-hover:rotate-[180deg]" />
             <article className="font-normal p-6 bg-white rounded-md boxShadow w-[500px] absolute top-[40px] z-[-1] left-[-100px] group-hover:translate-y-0 translate-y-[-20px] group-hover:opacity-100 opacity-0 group-hover:z-30 transition-all duration-300">
               <div className="grid grid-cols-2">
@@ -220,10 +220,10 @@ const Navbar = () => {
               >
                 <div>
                   <ul className="flex flex-1 flex-col gap-1 py-3">
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <Link
                         to="/"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
@@ -238,10 +238,10 @@ const Navbar = () => {
                         </div>
                       </Link>
                     </li>
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <Link
                         to="/courses"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
@@ -295,14 +295,14 @@ const Navbar = () => {
                                     </div>
                                 </a>
                             </li> */}
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <Link
-                        href="/admin/blogList"
+                        to="/universities"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
-                          currentUrl === "coursess" && "bg-sky-50"
+                          currentUrl === "universities" && "bg-sky-50"
                         }`}
                       >
                         <div className="flex items-center self-center ">
@@ -314,17 +314,17 @@ const Navbar = () => {
                           }
                           className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm"
                         >
-                          Posts
+                          Universities
                         </div>
                         <span className="inline-flex items-center justify-center rounded-full bg-pink-100 px-2 text-xs text-pink-500 ">
                           7<span className="sr-only"> new notifications</span>
                         </span>
                       </Link>
                     </li>
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <a
                         href="#"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
@@ -348,10 +348,10 @@ const Navbar = () => {
                 </div>
                 <div>
                   <ul className="flex flex-1 flex-col gap-1 py-3">
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <a
                         href="#"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
@@ -371,10 +371,10 @@ const Navbar = () => {
                         </div>
                       </a>
                     </li>
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <a
                         href="#"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
@@ -394,10 +394,10 @@ const Navbar = () => {
                         </div>
                       </a>
                     </li>
-                    <li onClick={() =>
-                            setMobileSidebarOpen(!mobileSidebarOpen)
-                          } className="px-3">
-                        
+                    <li
+                      onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                      className="px-3"
+                    >
                       <a
                         href="#"
                         className={`flex items-center gap-3 rounded p-3 text-slate-700 transition-colorsx hover:bg-sky-50 hover:text-sky-500  aria-[current=page]:bg-sky-50 aria-[current=page]:text-emerald-500 ${
