@@ -526,18 +526,18 @@ export default function CourseFilterSidebar({ onFilterChange }) {
         <div className="mt-6 space-y-4">
           <a href="#" className="block">
             <img
-              src="/placeholder.svg?height=200&width=300"
+              src="https://www.totalstudentcare.com/uploades/advertise/smeaward.png"
               alt="Promotional banner"
               className="w-full rounded-md shadow-sm hover:shadow-md transition-shadow"
             />
           </a>
-          <a href="#" className="block">
+          {/* <a href="#" className="block">
             <img
               src="/placeholder.svg?height=200&width=300"
               alt="Award banner"
               className="w-full rounded-md shadow-sm hover:shadow-md transition-shadow"
             />
-          </a>
+          </a> */}
         </div>
       </div>
     )
