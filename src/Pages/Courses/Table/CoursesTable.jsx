@@ -75,7 +75,7 @@ export default function CoursesTable() {
   // };
 
   return (
-    <div className="bg-white w-full mx-auto p-1 sm:p-4 lg:px-16 outline-0">
+    <div className="bg-white w-full mx-auto p-4 lg:px-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function CoursesTable() {
           <select
             value={filter}
             onChange={handleFilterChange}
-            className="w-full p-2 border-2 rounded-md appearance-none bg-white pr-8 outline-none"
+            className="w-full p-2 border-2 border-gray-800 rounded-md appearance-none bg-white pr-8 focus:outline-none"
           >
             <option value="all">All courses</option>
             <option value="acca">ACCA courses</option>
@@ -112,7 +112,7 @@ export default function CoursesTable() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="border rounded-sm overflow-hidden outline-0"
+        className="border rounded-sm overflow-hidden"
       >
         {/* Table header */}
         <motion.div
@@ -168,21 +168,33 @@ export default function CoursesTable() {
               </motion.div>
 
               {/* Expanded content */}
-              <AnimatePresence mode="sync">
+              <AnimatePresence>
                 {expandedCourse === course.id && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0, transition: { duration: 0.2 } }}
-                    transition={{ duration: 0.3 }}
+                    animate={{
+                      opacity: 1,
+                      height: "auto",
+                      transition: {
+                        height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] },
+                        opacity: { duration: 0.25 },
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: {
+                        height: { duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] },
+                        opacity: { duration: 0.2, delay: 0.05 },
+                      },
+                    }}
                     className="bg-gray-50 border-t overflow-hidden"
                   >
                     <div className="p-6">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                        transition={{ duration: 0.3 }}
+                        animate={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
+                        exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
                         className="flex justify-between items-start mb-6"
                       >
                         <h3 className="text-2xl font-bold text-blue-900">{course.name}</h3>
@@ -199,9 +211,8 @@ export default function CoursesTable() {
                       <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                        transition={{ duration: 0.3 }}
+                        animate={{ opacity: 1, transition: { duration: 0.3 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.2 } }}
                       >
                         {Object.entries(course.details).map(([key, value], i) => {
                           let Icon
@@ -250,11 +261,21 @@ export default function CoursesTable() {
                             <motion.div
                               key={key}
                               initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                              transition={{
-                                duration: 0.2,
-                                delay: 0.05 + i * 0.02,
+                              animate={{
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                  duration: 0.3,
+                                  delay: 0.05 + i * 0.03,
+                                },
+                              }}
+                              exit={{
+                                opacity: 0,
+                                y: -5,
+                                transition: {
+                                  duration: 0.15,
+                                  delay: 0.02 * (Object.keys(course.details).length - i - 1),
+                                },
                               }}
                             >
                               <InfoCard
@@ -269,9 +290,8 @@ export default function CoursesTable() {
                       <motion.div
                         className="flex justify-center gap-4 mt-8"
                         initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                        transition={{ duration: 0.3 }}
+                        animate={{ opacity: 1, y: 0, transition: { duration: 0.3, delay: 0.2 } }}
+                        exit={{ opacity: 0, y: -5, transition: { duration: 0.2 } }}
                       >
                         <Link to={`/courses/${course.id}`}>
                           <motion.button
