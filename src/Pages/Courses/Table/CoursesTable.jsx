@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import {
   FaBook,
   FaBriefcase,
@@ -15,59 +16,60 @@ import {
   FaStar,
   FaTrophy,
   FaUsers,
-} from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
-import InfoCard from "../Card/InfoCard"
-import { coursesTableData } from "./CoursesTableData"
-import { Link } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
+} from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import InfoCard from "../Card/InfoCard";
+import { coursesTableData } from "./CoursesTableData";
 
 // Sample course data with expanded details
 
-export default function CoursesTable() {
-  const [expandedCourse, setExpandedCourse] = useState(null)
-  const [filter, setFilter] = useState("all")
-  const navigate = useNavigate()
-
+export default function CoursesTable({ filters }) {
+  const [expandedCourse, setExpandedCourse] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const navigate = useNavigate();
+  console.log("filters", filters);
   const filteredCourses =
     filter === "all"
       ? coursesTableData
       : coursesTableData.filter((course) => {
-          if (filter === "acca") return course.name.toLowerCase().includes("acca")
-          if (filter === "bsc") return course.name.toLowerCase().includes("bsc")
-          if (filter === "diploma") return course.name.toLowerCase().includes("diploma")
-          return true
-        })
+          if (filter === "acca")
+            return course.name.toLowerCase().includes("acca");
+          if (filter === "bsc")
+            return course.name.toLowerCase().includes("bsc");
+          if (filter === "diploma")
+            return course.name.toLowerCase().includes("diploma");
+          return true;
+        });
 
   const toggleExpand = (courseId) => {
     if (expandedCourse === courseId) {
-      setExpandedCourse(null)
+      setExpandedCourse(null);
     } else {
-      setExpandedCourse(courseId)
+      setExpandedCourse(courseId);
     }
-  }
+  };
 
   const handleFilterChange = (e) => {
-    setFilter(e.target.value)
-  }
+    setFilter(e.target.value);
+  };
 
   // Function to get the border color based on the color value
   const getBorderColor = (color) => {
     switch (color) {
       case "blue":
-        return "#3b82f6"
+        return "#3b82f6";
       case "green":
-        return "#22c55e"
+        return "#22c55e";
       case "yellow":
-        return "#eab308"
+        return "#eab308";
       case "purple":
-        return "#a855f7"
+        return "#a855f7";
       case "red":
-        return "#ef4444"
+        return "#ef4444";
       default:
-        return "#3b82f6"
+        return "#3b82f6";
     }
-  }
+  };
 
   // const handleViewDetails = (courseId) => {
   //   // Navigate to course details page using React Router
@@ -75,7 +77,7 @@ export default function CoursesTable() {
   // };
 
   return (
-    <div className="bg-white w-full mx-auto p-4 lg:px-16">
+    <div className="bg-white w-full mx-auto p-4 lg:px-16 text-sm">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -101,8 +103,18 @@ export default function CoursesTable() {
             <option value="diploma">Diploma courses</option>
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-            <svg className="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            <svg
+              className="h-4 w-4 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </motion.div>
@@ -116,13 +128,13 @@ export default function CoursesTable() {
       >
         {/* Table header */}
         <motion.div
-          className="grid grid-cols-3 bg-gray-100"
+          className="grid grid-cols-2 xs:grid-cols-3 bg-gray-100"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.3 }}
         >
           <div className="p-4 font-bold text-blue-900">Course Name</div>
-          <div className="p-4 font-bold text-blue-900">Awarding body</div>
+          <div className="hidden xs:block p-4 font-bold text-blue-900">Awarding body</div>
           <div className="p-4 font-bold text-blue-900">Course Fees</div>
         </motion.div>
 
@@ -145,7 +157,7 @@ export default function CoursesTable() {
             >
               {/* Main row */}
               <motion.div
-                className="grid grid-cols-3 hover:bg-gray-50 cursor-pointer"
+                className="grid grid-cols-2 xs:grid-cols-3 hover:bg-gray-50 cursor-pointer"
                 onClick={() => toggleExpand(course.id)}
                 whileHover={{ backgroundColor: "rgba(243, 244, 246, 0.8)" }}
                 transition={{ duration: 0.2 }}
@@ -157,13 +169,17 @@ export default function CoursesTable() {
                   />
                   <motion.div
                     animate={{ rotate: expandedCourse === course.id ? 90 : 0 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+                    transition={{
+                      duration: 0.3,
+                      type: "spring",
+                      stiffness: 200,
+                    }}
                   >
                     <FaChevronRight size={20} />
                   </motion.div>
                   {course.name}
                 </div>
-                <div className="p-4">{course.awardingBody}</div>
+                <div className="hidden xs:block p-4">{course.awardingBody}</div>
                 <div className="p-4">{course.fees}</div>
               </motion.div>
 
@@ -176,7 +192,10 @@ export default function CoursesTable() {
                       opacity: 1,
                       height: "auto",
                       transition: {
-                        height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] },
+                        height: {
+                          duration: 0.4,
+                          ease: [0.04, 0.62, 0.23, 0.98],
+                        },
                         opacity: { duration: 0.25 },
                       },
                     }}
@@ -184,7 +203,10 @@ export default function CoursesTable() {
                       opacity: 0,
                       height: 0,
                       transition: {
-                        height: { duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] },
+                        height: {
+                          duration: 0.35,
+                          ease: [0.04, 0.62, 0.23, 0.98],
+                        },
                         opacity: { duration: 0.2, delay: 0.05 },
                       },
                     }}
@@ -193,16 +215,30 @@ export default function CoursesTable() {
                     <div className="p-6">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
-                        exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
-                        className="flex justify-between items-start mb-6"
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.3 },
+                        }}
+                        exit={{
+                          opacity: 0,
+                          y: -10,
+                          transition: { duration: 0.2 },
+                        }}
+                        className="flex justify-between items-center mb-6"
                       >
-                        <h3 className="text-2xl font-bold text-blue-900">{course.name}</h3>
+                        <h3 className="text-md sm:text-lg font-bold text-blue-900">
+                          {course.name}
+                        </h3>
                         <motion.button
                           className="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 10,
+                          }}
                         >
                           <FaShareAlt size={16} />
                           Share
@@ -214,100 +250,131 @@ export default function CoursesTable() {
                         animate={{ opacity: 1, transition: { duration: 0.3 } }}
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
                       >
-                        {Object.entries(course.details).map(([key, value], i) => {
-                          let Icon
-                          switch (key) {
-                            case "courseSubject":
-                              Icon = FaBook
-                              break
-                            case "academicCredit":
-                              Icon = FaStar
-                              break
-                            case "qualification":
-                              Icon = FaTrophy
-                              break
-                            case "awardingBody":
-                              Icon = FaUsers
-                              break
-                            case "recognition":
-                              Icon = FaUsers
-                              break
-                            case "academicLevel":
-                              Icon = FaChartBar
-                              break
-                            case "studyMode":
-                              Icon = FaGraduationCap
-                              break
-                            case "duration":
-                              Icon = FaClock
-                              break
-                            case "fees":
-                              Icon = FaPoundSign
-                              break
-                            case "intakes":
-                              Icon = FaCalendarAlt
-                              break
-                            case "workPlacement":
-                              Icon = FaBriefcase
-                              break
-                            case "location":
-                              Icon = FaMapMarkerAlt
-                              break
-                            default:
-                              Icon = FaBook
-                          }
+                        {Object.entries(course.details).map(
+                          ([key, value], i) => {
+                            let Icon;
+                            switch (key) {
+                              case "courseSubject":
+                                Icon = FaBook;
+                                break;
+                              case "academicCredit":
+                                Icon = FaStar;
+                                break;
+                              case "qualification":
+                                Icon = FaTrophy;
+                                break;
+                              case "awardingBody":
+                                Icon = FaUsers;
+                                break;
+                              case "recognition":
+                                Icon = FaUsers;
+                                break;
+                              case "academicLevel":
+                                Icon = FaChartBar;
+                                break;
+                              case "studyMode":
+                                Icon = FaGraduationCap;
+                                break;
+                              case "duration":
+                                Icon = FaClock;
+                                break;
+                              case "fees":
+                                Icon = FaPoundSign;
+                                break;
+                              case "intakes":
+                                Icon = FaCalendarAlt;
+                                break;
+                              case "workPlacement":
+                                Icon = FaBriefcase;
+                                break;
+                              case "location":
+                                Icon = FaMapMarkerAlt;
+                                break;
+                              default:
+                                Icon = FaBook;
+                            }
 
-                          return (
-                            <motion.div
-                              key={key}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{
-                                opacity: 1,
-                                y: 0,
-                                transition: {
-                                  duration: 0.3,
-                                  delay: 0.05 + i * 0.03,
-                                },
-                              }}
-                              exit={{
-                                opacity: 0,
-                                y: -5,
-                                transition: {
-                                  duration: 0.15,
-                                  delay: 0.02 * (Object.keys(course.details).length - i - 1),
-                                },
-                              }}
-                            >
-                              <InfoCard
-                                icon={Icon}
-                                label={key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
-                                value={value}
-                              />
-                            </motion.div>
-                          )
-                        })}
+                            return (
+                              <motion.div
+                                key={key}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{
+                                  opacity: 1,
+                                  y: 0,
+                                  transition: {
+                                    duration: 0.3,
+                                    delay: 0.05 + i * 0.03,
+                                  },
+                                }}
+                                exit={{
+                                  opacity: 0,
+                                  y: -5,
+                                  transition: {
+                                    duration: 0.15,
+                                    delay:
+                                      0.02 *
+                                      (Object.keys(course.details).length -
+                                        i -
+                                        1),
+                                  },
+                                }}
+                              >
+                                <InfoCard
+                                  icon={Icon}
+                                  label={key
+                                    .replace(/([A-Z])/g, " $1")
+                                    .replace(/^./, (str) => str.toUpperCase())}
+                                  value={value}
+                                />
+                              </motion.div>
+                            );
+                          }
+                        )}
                       </motion.div>
                       <motion.div
                         className="flex justify-center gap-4 mt-8"
                         initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0, transition: { duration: 0.3, delay: 0.2 } }}
-                        exit={{ opacity: 0, y: -5, transition: { duration: 0.2 } }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.3, delay: 0.2 },
+                        }}
+                        exit={{
+                          opacity: 0,
+                          y: -5,
+                          transition: { duration: 0.2 },
+                        }}
                       >
                         <Link to={`/courses/${course.id}`}>
                           <motion.button
                             className="px-6 py-2 border-2 border-blue-900 text-blue-900 rounded hover:bg-blue-900 hover:text-white transition-colors"
-                            whileHover={{ scale: 1.05, backgroundColor: "#1e3a8a", color: "white" }}
+                            whileHover={{
+                              scale: 1.05,
+                              backgroundColor: "#1e3a8a",
+                              color: "white",
+                            }}
                             whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
                           >
                             View Details
                           </motion.button>
                         </Link>
                         <motion.button
                           className="px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800 transition-colors"
-                          whileHover={{ scale: 1.05, backgroundColor: "#1e40af" }}
+                          whileHover={{
+                            scale: 1.05,
+                            backgroundColor: "#1e40af",
+                          }}
                           whileTap={{ scale: 0.95 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 10,
+                          }}
                         >
                           Send Query
                         </motion.button>
@@ -321,9 +388,8 @@ export default function CoursesTable() {
         </AnimatePresence>
       </motion.div>
     </div>
-  )
+  );
 }
 
 // Export courses data for use in other components
 // export { coursesTableData };
-
