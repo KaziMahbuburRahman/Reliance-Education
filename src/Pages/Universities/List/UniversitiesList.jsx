@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa"
 
-export default function UniversitiesList() {
+export default function UniversityCollegePage() {
   const [listingType, setListingType] = useState("")
   const [country, setCountry] = useState("9") // Default to UK
   const [city, setCity] = useState("")
@@ -17,7 +17,7 @@ export default function UniversitiesList() {
   const [filteredInstitutions, setFilteredInstitutions] = useState([])
   const [totalPages, setTotalPages] = useState(0)
 
-  // Sample data for universities/colleges
+  // Sample data for universities/colleges with real image URLs
   const allInstitutions = [
     {
       id: 1,
@@ -26,7 +26,7 @@ export default function UniversitiesList() {
       location: "Bangor, United Kingdom",
       country: "9", // UK
       city: "31", // Bangor
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/Bangor-University.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -37,7 +37,7 @@ export default function UniversitiesList() {
       location: "Birmingham, United Kingdom",
       country: "9", // UK
       city: "13", // Birmingham
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/Birmingham-City-University2.jpg",
       courses: 553,
       scholarships: "Available",
     },
@@ -48,7 +48,7 @@ export default function UniversitiesList() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/3.jpg",
       courses: 43,
       scholarships: "Available",
     },
@@ -59,7 +59,7 @@ export default function UniversitiesList() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/David-Game-College.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -70,7 +70,7 @@ export default function UniversitiesList() {
       location: "Leicester, United Kingdom",
       country: "9", // UK
       city: "72", // Leicester
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/download.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -81,7 +81,8 @@ export default function UniversitiesList() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "/placeholder.svg?height=180&width=300",
+      image:
+        "https://www.totalstudentcare.com/uploades/institution/original/Middlesex-University-Logo_s-1-1-600x400.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -92,7 +93,7 @@ export default function UniversitiesList() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/nun.jpg",
       courses: 38,
       scholarships: "Available",
     },
@@ -103,7 +104,7 @@ export default function UniversitiesList() {
       location: "Belfast, United Kingdom",
       country: "9", // UK
       city: "69", // Belfast
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/Queen_University_Belfast.jpg",
       courses: 0,
       scholarships: "Available",
     },
@@ -114,7 +115,7 @@ export default function UniversitiesList() {
       location: "Southampton, United Kingdom",
       country: "9", // UK
       city: "80", // Southampton
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/Solent-Logo.png",
       courses: 0,
       scholarships: "Available",
     },
@@ -125,7 +126,7 @@ export default function UniversitiesList() {
       location: "London, United Kingdom",
       country: "9", // UK
       city: "12", // London
-      image: "/placeholder.svg?height=180&width=300",
+      image: "https://www.totalstudentcare.com/uploades/institution/original/Ulster-University%20logo.png",
       courses: 25,
       scholarships: "Available",
     },
