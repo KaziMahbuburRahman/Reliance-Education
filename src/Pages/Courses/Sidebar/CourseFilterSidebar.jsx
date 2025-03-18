@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   FaChevronDown,
@@ -11,6 +11,7 @@ import {
   FaUniversity,
   FaFilter,
   FaAlignLeft,
+  FaTimes,
 } from "react-icons/fa"
 
 // Sample data for categories
@@ -70,6 +71,8 @@ const cities = [
   { id: 13, name: "Birmingham" },
   { id: 30, name: "Brighton" },
   { id: 45, name: "Bristol" },
+  { id: 99, name: "London" },
+  { id: 88, name: "Manchester" },
 ]
 
 // Sample data for months
@@ -97,12 +100,8 @@ const durations = [
   { value: 48, label: "4 Years" },
 ]
 
-
-
-
-
 export default function CourseFilterSidebar({ onFilterChange }) {
-  const [expandedSections, setExpandedSections] = useState([])
+  const [expandedSections, setExpandedSections] = useState(["category"])
   const [expandedCategories, setExpandedCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedSubcategory, setSelectedSubcategory] = useState(null)
@@ -111,20 +110,22 @@ export default function CourseFilterSidebar({ onFilterChange }) {
   const [selectedMonths, setSelectedMonths] = useState([])
   const [selectedDurations, setSelectedDurations] = useState([])
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [activeFiltersCount, setActiveFiltersCount] = useState(0)
 
-  // Use a ref to track if this is the first render
-  const isFirstRender = useRef(true)
-
-  // Fix the infinite loop by only calling onFilterChange when filters actually change
-  // and not on the initial render
+  // Calculate active filters count
   useEffect(() => {
-    // Skip the first render
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
-    }
+    let count = 0
+    if (selectedCategory) count++
+    if (selectedSubcategory) count++
+    if (selectedCity) count++
+    count += selectedAlphabets.length
+    count += selectedMonths.length
+    count += selectedDurations.length
+    setActiveFiltersCount(count)
+  }, [selectedCategory, selectedSubcategory, selectedCity, selectedAlphabets, selectedMonths, selectedDurations])
 
-    // Only call onFilterChange if it exists
+  // Update parent component with filter changes
+  useEffect(() => {
     if (onFilterChange) {
       onFilterChange({
         category: selectedCategory,
@@ -135,9 +136,16 @@ export default function CourseFilterSidebar({ onFilterChange }) {
         durations: selectedDurations,
       })
     }
-  }, [selectedCategory, selectedSubcategory, selectedCity, selectedAlphabets, selectedMonths, selectedDurations]) // Removed onFilterChange from dependencies
+  }, [
+    selectedCategory,
+    selectedSubcategory,
+    selectedCity,
+    selectedAlphabets,
+    selectedMonths,
+    selectedDurations,
+    onFilterChange,
+  ])
 
-  // Rest of the component remains the same
   const toggleSection = (section) => {
     setExpandedSections((prev) => (prev.includes(section) ? prev.filter((s) => s !== section) : [...prev, section]))
   }
@@ -149,7 +157,19 @@ export default function CourseFilterSidebar({ onFilterChange }) {
   }
 
   const handleCategorySelect = (categoryId) => {
-    setSelectedCategory(categoryId === selectedCategory ? null : categoryId)
+    // If selecting the same category, deselect it
+    if (categoryId === selectedCategory) {
+      setSelectedCategory(null)
+    } else {
+      setSelectedCategory(categoryId)
+
+      // Automatically expand the category to show subcategories
+      if (!expandedCategories.includes(categoryId)) {
+        setExpandedCategories((prev) => [...prev, categoryId])
+      }
+    }
+
+    // Clear subcategory when changing category
     setSelectedSubcategory(null)
   }
 
@@ -158,7 +178,6 @@ export default function CourseFilterSidebar({ onFilterChange }) {
   }
 
   const handleCityChange = (e) => {
-    console.log(e.target)
     setSelectedCity(e.target.value)
   }
 
@@ -174,6 +193,15 @@ export default function CourseFilterSidebar({ onFilterChange }) {
     setSelectedDurations((prev) => (prev.includes(duration) ? prev.filter((d) => d !== duration) : [...prev, duration]))
   }
 
+  const clearAllFilters = () => {
+    setSelectedCategory(null)
+    setSelectedSubcategory(null)
+    setSelectedCity("")
+    setSelectedAlphabets([])
+    setSelectedMonths([])
+    setSelectedDurations([])
+  }
+
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
 
   return (
@@ -185,6 +213,11 @@ export default function CourseFilterSidebar({ onFilterChange }) {
           className="bg-blue-900 text-white p-4 rounded-full shadow-lg flex items-center justify-center"
         >
           <FaFilter size={20} />
+          {activeFiltersCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full">
+              {activeFiltersCount}
+            </span>
+          )}
         </button>
       </div>
 
@@ -208,9 +241,16 @@ export default function CourseFilterSidebar({ onFilterChange }) {
             >
               <div className="p-4 border-b flex justify-between items-center">
                 <h2 className="text-lg font-bold">Filters</h2>
-                <button onClick={() => setMobileFiltersOpen(false)}>
-                  <span className="text-2xl">&times;</span>
-                </button>
+                <div className="flex items-center gap-4">
+                  {activeFiltersCount > 0 && (
+                    <button onClick={clearAllFilters} className="text-sm text-blue-600 hover:text-blue-800">
+                      Clear all
+                    </button>
+                  )}
+                  <button onClick={() => setMobileFiltersOpen(false)}>
+                    <FaTimes size={20} />
+                  </button>
+                </div>
               </div>
               <div className="p-4">{renderFilterContent()}</div>
             </motion.div>
@@ -219,7 +259,19 @@ export default function CourseFilterSidebar({ onFilterChange }) {
       </AnimatePresence>
 
       {/* Desktop sidebar */}
-      <div className="hidden md:block w-full max-w-xs">{renderFilterContent()}</div>
+      <div className="hidden md:block w-full max-w-xs">
+        <div className="sticky top-4">
+          <div className="flex justify-between items-center p-4">
+            <h2 className="text-lg font-bold">Filters</h2>
+            {activeFiltersCount > 0 && (
+              <button onClick={clearAllFilters} className="text-sm text-blue-600 hover:text-blue-800">
+                Clear all
+              </button>
+            )}
+          </div>
+          {renderFilterContent()}
+        </div>
+      </div>
     </div>
   )
 
@@ -232,6 +284,7 @@ export default function CourseFilterSidebar({ onFilterChange }) {
           icon={<FaBook />}
           isExpanded={expandedSections.includes("category")}
           onToggle={() => toggleSection("category")}
+          badge={selectedCategory ? 1 : 0}
         >
           <ul className="space-y-2">
             {categories.map((category) => (
@@ -247,7 +300,7 @@ export default function CourseFilterSidebar({ onFilterChange }) {
                   />
                   <label
                     htmlFor={`category-${category.id}`}
-                    className={`flex-1 cursor-pointer ${selectedCategory === category.id ? "font-bold" : ""}`}
+                    className={`flex-1 cursor-pointer ${selectedCategory === category.id ? "font-bold text-blue-900" : ""}`}
                   >
                     {category.name}
                   </label>
@@ -290,7 +343,10 @@ export default function CourseFilterSidebar({ onFilterChange }) {
                                 checked={selectedSubcategory === subcategory.id}
                                 onChange={() => handleSubcategorySelect(subcategory.id)}
                               />
-                              <label htmlFor={`subcategory-${subcategory.id}`} className="text-sm cursor-pointer">
+                              <label
+                                htmlFor={`subcategory-${subcategory.id}`}
+                                className={`text-sm cursor-pointer ${selectedSubcategory === subcategory.id ? "font-bold text-blue-900" : ""}`}
+                              >
                                 {subcategory.name}
                               </label>
                             </div>
@@ -305,13 +361,13 @@ export default function CourseFilterSidebar({ onFilterChange }) {
           </ul>
         </FilterSection>
 
-        {/* Rest of the filter sections remain the same */}
         {/* University City */}
         <FilterSection
           title="University City"
           icon={<FaUniversity />}
           isExpanded={expandedSections.includes("city")}
           onToggle={() => toggleSection("city")}
+          badge={selectedCity ? 1 : 0}
         >
           <select
             value={selectedCity}
@@ -325,6 +381,16 @@ export default function CourseFilterSidebar({ onFilterChange }) {
               </option>
             ))}
           </select>
+          {selectedCity && (
+            <div className="mt-2">
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs flex items-center inline-block">
+                {selectedCity}
+                <button onClick={() => setSelectedCity("")} className="ml-1 text-blue-500 hover:text-blue-700">
+                  <FaTimes size={10} />
+                </button>
+              </span>
+            </div>
+          )}
         </FilterSection>
 
         {/* Course (A-Z) */}
@@ -333,6 +399,7 @@ export default function CourseFilterSidebar({ onFilterChange }) {
           icon={<FaAlignLeft />}
           isExpanded={expandedSections.includes("alphabet")}
           onToggle={() => toggleSection("alphabet")}
+          badge={selectedAlphabets.length}
         >
           <div className="grid grid-cols-6 gap-1 text-center">
             {alphabet.map((letter) => (
@@ -349,6 +416,18 @@ export default function CourseFilterSidebar({ onFilterChange }) {
               </motion.button>
             ))}
           </div>
+          {selectedAlphabets.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {selectedAlphabets.map((letter) => (
+                <span key={letter} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs flex items-center">
+                  {letter}
+                  <button onClick={() => toggleAlphabet(letter)} className="ml-1 text-blue-500 hover:text-blue-700">
+                    <FaTimes size={10} />
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
         </FilterSection>
 
         {/* Start Date (Month) */}
@@ -357,6 +436,7 @@ export default function CourseFilterSidebar({ onFilterChange }) {
           icon={<FaCalendarAlt />}
           isExpanded={expandedSections.includes("month")}
           onToggle={() => toggleSection("month")}
+          badge={selectedMonths.length}
         >
           <ul className="space-y-2">
             {months.map((month) => (
@@ -369,13 +449,28 @@ export default function CourseFilterSidebar({ onFilterChange }) {
                     onChange={() => toggleMonth(month)}
                     className="mr-2"
                   />
-                  <label htmlFor={`month-${month}`} className="cursor-pointer">
+                  <label
+                    htmlFor={`month-${month}`}
+                    className={`cursor-pointer ${selectedMonths.includes(month) ? "font-semibold text-blue-900" : ""}`}
+                  >
                     {month}
                   </label>
                 </div>
               </li>
             ))}
           </ul>
+          {selectedMonths.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {selectedMonths.map((month) => (
+                <span key={month} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs flex items-center">
+                  {month}
+                  <button onClick={() => toggleMonth(month)} className="ml-1 text-blue-500 hover:text-blue-700">
+                    <FaTimes size={10} />
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
         </FilterSection>
 
         {/* Course Duration */}
@@ -384,6 +479,7 @@ export default function CourseFilterSidebar({ onFilterChange }) {
           icon={<FaClock />}
           isExpanded={expandedSections.includes("duration")}
           onToggle={() => toggleSection("duration")}
+          badge={selectedDurations.length}
         >
           <ul className="space-y-2">
             {durations.map((duration) => (
@@ -396,13 +492,34 @@ export default function CourseFilterSidebar({ onFilterChange }) {
                     onChange={() => toggleDuration(duration.value)}
                     className="mr-2"
                   />
-                  <label htmlFor={`duration-${duration.value}`} className="cursor-pointer">
+                  <label
+                    htmlFor={`duration-${duration.value}`}
+                    className={`cursor-pointer ${selectedDurations.includes(duration.value) ? "font-semibold text-blue-900" : ""}`}
+                  >
                     {duration.label}
                   </label>
                 </div>
               </li>
             ))}
           </ul>
+          {selectedDurations.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {selectedDurations.map((duration) => {
+                const durationLabel = durations.find((d) => d.value === duration)?.label || duration
+                return (
+                  <span
+                    key={duration}
+                    className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs flex items-center"
+                  >
+                    {durationLabel}
+                    <button onClick={() => toggleDuration(duration)} className="ml-1 text-blue-500 hover:text-blue-700">
+                      <FaTimes size={10} />
+                    </button>
+                  </span>
+                )
+              })}
+            </div>
+          )}
         </FilterSection>
 
         {/* Promotional banners */}
@@ -427,9 +544,9 @@ export default function CourseFilterSidebar({ onFilterChange }) {
   }
 }
 
-function FilterSection({ title, icon, isExpanded, onToggle, children }) {
+function FilterSection({ title, icon, isExpanded, onToggle, children, badge = 0 }) {
   return (
-    <div className="border rounded-md overflow-hidden shadow-sm">
+    <div className="border rounded-md overflow-hidden shadow-sm w-full max-w-[290px] mx-auto">
       <button
         onClick={onToggle}
         className="w-full p-4 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors"
@@ -437,6 +554,9 @@ function FilterSection({ title, icon, isExpanded, onToggle, children }) {
         <div className="flex items-center">
           <span className="mr-2 text-blue-900">{icon}</span>
           <h3 className="font-medium">{title}</h3>
+          {badge > 0 && (
+            <span className="ml-2 bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full">{badge}</span>
+          )}
         </div>
         <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
           <FaChevronDown className="text-gray-500" />
