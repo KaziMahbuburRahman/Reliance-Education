@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import CourseDetails from "../Pages/Courses/CourseDetails";
 import Courses from "../Pages/Courses/Courses";
+import Universities from "../Pages/Universities/Universities";
 import Navbar from "../Shared/Navbar";
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
         <Route path="/" element={<div>Hello Home</div>} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/about-us" element={<div>Hello About Us</div>} />
-        <Route path="/universities" element={<div>Hello Universities</div>} />
+        <Route path="/universities" element={<Universities />} />
         <Route path="/scholarships" element={<div>Hello Scholarships</div>} />
         <Route path="/associates" element={<div>Hello Associates</div>} />
         <Route
