@@ -283,11 +283,11 @@ const Footer = () => {
             </li>
           </ul>
 
-          <p class="flex justify-center items-center gap-2 w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
+          <p class="flex justify-start md:justify-center items-start gap-1 md:gap-2 w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
             <span>
               <FaCopyright className=" fill-[#c01d2e] text-xl lg:text-2xl" />
             </span>
-            Copyright 2025, Reliance Education, All Rights Reserved.
+            <p>Copyright 2025, Reliance Education, All Rights Reserved.</p>
           </p>
         </div>
       </div>
