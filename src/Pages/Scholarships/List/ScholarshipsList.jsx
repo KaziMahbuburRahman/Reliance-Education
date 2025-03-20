@@ -142,7 +142,7 @@ export default function ScholarshipList() {
             universities in the UK and get help to apply for these. Please note that these scholarships do not cover
             full course fees, but will reduce part of your course fee to help fund your study in the UK.
           </p>
-        </div>
+
 
         {/* Scholarship Cards */}
         <motion.div
@@ -158,9 +158,9 @@ export default function ScholarshipList() {
               variants={item}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="p-4 border-b border-gray-200 flex justify-center items-center h-32">
-                <div className="w-40 h-20 relative">
-                  <img src={uni.logo || "/placeholder.svg"} alt={uni.name} className="object-contain w-full h-full" />
+              <div className="p-4 border-b border-gray-200 flex justify-center items-center">
+                <div className=" relative">
+                  <img src={uni.logo || "/placeholder.svg"} alt={uni.name} className="object-contain w-full h-44 border-2 border-[#538de64d] border-dashed" />
                 </div>
               </div>
               <div className="p-5">
@@ -182,7 +182,7 @@ export default function ScholarshipList() {
                 <div className="pt-3 border-t border-gray-200">
                   <a
                     href={uni.link}
-                    className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                    className="w-full text-center inline-block px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
                   >
                     Read More
                   </a>
@@ -191,7 +191,7 @@ export default function ScholarshipList() {
             </motion.div>
           ))}
         </motion.div>
-
+        </div>
         {/* Pagination */}
         <div className="flex justify-center mt-8 mb-12">
           <nav className="flex items-center space-x-1">
