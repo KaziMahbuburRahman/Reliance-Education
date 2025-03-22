@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaShareAlt } from "react-icons/fa";
+import ScholarshipsBanner from "../Banner/ScholarshipsBanner";
 
 const universities = [
   {
@@ -115,27 +116,7 @@ export default function ScholarshipList() {
 
   return (
     <section className=" bg-gray-50 ">
-      {/* Banner Section */}
-      <div
-        className="relative h-[25rem] md:h-80 bg-cover bg overflow-hidden bg-center bg-no-repeat bg-fixed"
-        style={{
-          backgroundImage: `url('https://www.totalstudentcare.com/ux/tsc/img/scholarships2.jpeg')`,
-          // backgroundPositionY: backgroundY
-        }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Study UK <span className="text-red-500">Scholarships</span>
-            </h2>
-            <p className="text-white text-lg mt-2">
-              Undergraduate & Postgraduate scholarships for international
-              students from UK Universities
-            </p>
-          </div>
-        </div>
-      </div>
+      <ScholarshipsBanner />
 
       {/* Description Section */}
       <div className="container mx-auto px-4 py-8">
