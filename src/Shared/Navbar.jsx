@@ -146,9 +146,11 @@ const Navbar = () => {
               </article>
             </li>
           </Link>
-          <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] border-t-4 border-transparent hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
-            Scholarships
-          </li>
+          <Link to="/scholarships">
+            <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] border-t-4 border-transparent hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
+              Scholarships
+            </li>
+          </Link>
 
           <li className="transition-all duration-500 cursor-pointer hover:text-[#3B9DF8] border-t-4 border-transparent hover:bg-black/5 hover:border-t-red-500 uppercase p-2">
             Associates
@@ -337,14 +339,16 @@ const Navbar = () => {
                         <div className="flex items-center self-center ">
                           <MdOutlineInfo className="h-7 w-7" />
                         </div>
+                        <Link to="/scholarships">
                         <div
                           onClick={() =>
                             setMobileSidebarOpen(!mobileSidebarOpen)
                           }
                           className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm"
                         >
-                          Notifications
+                          Scholarships
                         </div>
+                        </Link>
                       </a>
                     </li>
                   </ul>

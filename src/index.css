@@ -8,3 +8,7 @@
 @theme {
   --breakpoint-xs: 36.3rem;
 }
+
+* {
+  font-family: "Roboto", Arial, sans-serif;
+}
